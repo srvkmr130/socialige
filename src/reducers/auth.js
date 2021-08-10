@@ -32,5 +32,9 @@ export default function auth(state = initialAuthState, action) {
         error: action.error,
         inProgress: false,
       };
+    default:
+      return {
+        ...state,
+      };
   }
 }
