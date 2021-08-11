@@ -37,7 +37,6 @@ class Signup extends Component {
       email: e.target.value,
     });
   };
-
   handleNameChange = (e) => {
     this.setState({
       name: e.target.value,
@@ -61,7 +60,7 @@ class Signup extends Component {
     }
     return (
       <form className="login-form">
-        <span className="login-signup-header">Log In</span>
+        <span className="login-signup-header">Register</span>
         {error && <div className="alert error-dailog">{error}</div>}
         <div className="field">
           <input
