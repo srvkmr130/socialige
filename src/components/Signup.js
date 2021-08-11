@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { clearAuthSatate } from '../actions/auth';
 import { signup, SignupFailed } from '../actions/signup';
 
 class Signup extends Component {
@@ -11,6 +13,10 @@ class Signup extends Component {
       password: '',
       confirm_password: '',
     };
+  }
+
+  componentWillUnmount() {
+    this.props.dispatch(clearAuthSatate());
   }
 
   handleFormSubmit = (e) => {
@@ -49,7 +55,10 @@ class Signup extends Component {
   };
 
   render() {
-    const { error, inProgress } = this.props.signup;
+    const { error, inProgress, isSignedUp } = this.props.signup;
+    if (isSignedUp) {
+      return <Redirect to="/" />;
+    }
     return (
       <form className="login-form">
         <span className="login-signup-header">Log In</span>
