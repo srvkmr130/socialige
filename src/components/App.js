@@ -23,7 +23,19 @@ const PrivateRoute = (privateRouteProps) => {
     <Route
       path={path}
       render={(props) => {
-        return isLoggedin ? <Component {...props} /> : <Redirect to="login" />;
+        return isLoggedin ? (
+          <Component {...props} />
+        ) : (
+          // here we want to pass location of the current path in props , say we route to Settings and user is not logged in.Then first user will see Login component and we also pass location of settings to LOgin component as props so that Login can redirect to settings component
+          <Redirect
+            to={{
+              pathname: '/login',
+              state: {
+                from: props.location,
+              },
+            }}
+          />
+        );
       }}
     />
   );
