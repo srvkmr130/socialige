@@ -52,14 +52,16 @@ class Navbar extends Component {
           </div>
           <div className="right-nav">
             {auth.isLoggedin && (
-              <div className="user">
-                <img
-                  src="https://image.flaticon.com/icons/svg/2154/2154651.svg"
-                  alt="user-dp"
-                  id="user-dp"
-                />
-                <span>{auth.user.name}</span>
-              </div>
+              <Link to="/settings">
+                <div className="user">
+                  <img
+                    src="https://image.flaticon.com/icons/svg/2154/2154651.svg"
+                    alt="user-dp"
+                    id="user-dp"
+                  />
+                  <span>{auth.user.name}</span>
+                </div>
+              </Link>
             )}
 
             <div className="nav-links">
