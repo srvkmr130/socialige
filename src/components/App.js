@@ -9,13 +9,13 @@ import {
   Switch,
 } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import { Home, Navbar, Error404, Login, Signup } from './'; // will import from index.js
+import { Home, Navbar, Error404, Login, Signup, Settings } from './'; // will import from index.js
 import { authenticateUser } from '../actions/auth';
 
 // Settings is a Functional Component
-const Settings = () => {
-  <div>Settings</div>;
-};
+// const Settings = () => {
+//   <div>Settings</div>;
+// };
 
 const PrivateRoute = (privateRouteProps) => {
   const { isLoggedin, path, component: Component } = privateRouteProps;
