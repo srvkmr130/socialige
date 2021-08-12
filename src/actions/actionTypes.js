@@ -18,3 +18,6 @@ export const LOG_OUT = 'LOG_OUT';
 
 // clear auth error message
 export const CLEAR_AUTH_STATE = 'CLEAR_AUTH_STATE';
+
+export const EDIT_USER_SUCCESSFUL = 'EDIT_USER_SUCCESSFUL';
+export const EDIT_USER_FAILED = 'EDIT_USER_FAILED';

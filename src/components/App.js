@@ -11,6 +11,7 @@ import {
 import jwt_decode from 'jwt-decode';
 import { Home, Navbar, Error404, Login, Signup, Settings } from './'; // will import from index.js
 import { authenticateUser } from '../actions/auth';
+import { getAuthTokenFromLocalStorage } from '../helpers/utils';
 
 // Settings is a Functional Component
 // const Settings = () => {
@@ -44,7 +45,7 @@ const PrivateRoute = (privateRouteProps) => {
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
-    const token = localStorage.getItem('token');
+    const token = getAuthTokenFromLocalStorage();
     console.log('token', token);
     if (token) {
       const user = jwt_decode(token);
