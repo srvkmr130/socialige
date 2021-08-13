@@ -9,7 +9,15 @@ import {
   Switch,
 } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import { Home, Navbar, Error404, Login, Signup, Settings } from './'; // will import from index.js
+import {
+  Home,
+  Navbar,
+  Error404,
+  Login,
+  Signup,
+  Settings,
+  UserProfile,
+} from './'; // will import from index.js
 import { authenticateUser } from '../actions/auth';
 import { getAuthTokenFromLocalStorage } from '../helpers/utils';
 
@@ -75,6 +83,11 @@ class App extends React.Component {
               isLoggedin={auth.isLoggedin}
               path="/settings"
               component={Settings}
+            />
+            <PrivateRoute
+              path="/user/:userId"
+              component={UserProfile}
+              isLoggedin={auth.isLoggedin}
             />
             {/* <Route exact path="/" component={Home} />
                 <Route exact path="/" component={Home} /> 
