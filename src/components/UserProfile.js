@@ -11,6 +11,16 @@ class UserProfile extends Component {
     }
   }
 
+  checkIfUserIsAFriend = () => {
+    const { match, friends } = this.props;
+    const userId = match.params.userId;
+
+    const index = friends.map((friend) => friend.to_user._id).indexOf(userId); // here we are grabbing all the friends using map () in a new array . FRom this array we are finding the indexOf userId
+
+    if (index !== -1) return true;
+    else return false;
+  };
+
   render() {
     const {
       match: { params },
@@ -24,6 +34,7 @@ class UserProfile extends Component {
       return <h1>Loading ....</h1>;
     }
 
+    const isUserIsAFriend = this.checkIfUserIsAFriend();
     return (
       <div className="settings">
         <div className="img-container">
@@ -44,16 +55,21 @@ class UserProfile extends Component {
         </div>
 
         <div className="btn-grp">
-          <button className="button save-btn">Add Friend</button>
+          {!isUserIsAFriend ? (
+            <button className="button save-btn">Add Friend</button>
+          ) : (
+            <button className="button save-btn">Remove Friend</button>
+          )}
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps({ profile }) {
+function mapStateToProps({ profile, friends }) {
   return {
     profile,
+    friends,
   };
 }
 

@@ -20,6 +20,7 @@ import {
 } from './'; // will import from index.js
 import { authenticateUser } from '../actions/auth';
 import { getAuthTokenFromLocalStorage } from '../helpers/utils';
+import { fetchUserFriends } from '../actions/friends';
 
 // Settings is a Functional Component
 // const Settings = () => {
@@ -59,11 +60,13 @@ class App extends React.Component {
       const user = jwt_decode(token);
       console.log('user', user);
       this.props.dispatch(authenticateUser(user));
+
+      this.props.dispatch(fetchUserFriends());
     }
   }
 
   render() {
-    const { posts, auth } = this.props;
+    const { posts, auth, friends } = this.props;
     return (
       <Router>
         <div>
@@ -73,7 +76,14 @@ class App extends React.Component {
               exact
               path="/"
               render={(props) => {
-                return <Home {...props} posts={posts} />;
+                return (
+                  <Home
+                    {...props}
+                    posts={posts}
+                    friends={friends}
+                    isLoggedin={auth.isLoggedin}
+                  />
+                );
                 // Here {...props} will spread into( location:{location} history :{histoy} etc)
               }}
             />
@@ -103,6 +113,7 @@ function mapStateToProps(state) {
   return {
     posts: state.posts,
     auth: state.auth,
+    friends: state.friends,
   };
 }
 

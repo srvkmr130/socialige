@@ -23,7 +23,7 @@ export function userProfileFailure(error) {
 export function fetchUserProfile(userId) {
   return (dispatch) => {
     console.log('FetchUserProfile', userId);
-    dispatch(startUserProfileFetch);
+    dispatch(startUserProfileFetch());
     const url = APIUrls.userProfile(userId);
     fetch(url, {
       headers: {
